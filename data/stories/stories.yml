@@ -1,0 +1,196 @@
+version: "2.0"
+
+
+stories:
+- story: contact agent path 1
+  steps:
+  - intent: need_info
+  - action: utter_info
+  - intent: more_info
+  - action: utter_contact_agent
+
+
+- story: contact agent path 2
+  steps:
+  - intent: affirm
+  - action: utter_upgrade_check
+  - intent: affirm
+  - action: utter_contact_agent
+
+- story: contact agent path 3
+  steps:
+  - intent: need_info
+  - action: utter_info
+  - intent: affirm
+  - action: utter_contact_agent
+
+- story: more_info path 1
+  steps:
+  - intent: need_info
+  - action: utter_more_info
+  - action: utter_offers_info
+  - action: utter_payable_info
+  - intent: affirm
+  - action: utter_goodbye
+
+- story: busy happy path 1
+  steps:
+  - intent: not_interested
+  - action: utter_reason_check
+  - intent: mood_busy
+  - action: utter_call_again_check
+  - intent: affirm
+  - action: utter_happy_bye
+
+- story: busy happy path 2
+  steps:
+  - intent: mood_busy
+  - action: utter_call_again_check
+  - intent: affirm
+  - action: utter_happy_bye
+
+- story: busy happy path 3
+  steps:
+  - intent: affirm
+  - action: utter_upgrade_check
+  - intent: mood_busy
+  - action: utter_call_again_check
+  - intent: affirm
+  - action: utter_goodbye
+
+- story: busy sad path 1
+  steps:
+  - intent: mood_busy
+  - action: utter_call_again_check
+  - intent: deny
+  - action: utter_goodbye
+
+- story: busy sad path 2
+  steps:
+  - intent: not_interested
+  - action: utter_reason_check
+  - intent: mood_busy
+  - action: utter_call_again_check
+  - intent: deny
+  - action: utter_sad_bye
+
+- story: busy sad path 3
+  steps:
+  - intent: mood_busy
+  - action: utter_call_again_check
+  - intent: deny
+  - action: utter_sad_bye
+
+- story: busy sad path 4
+  steps:
+  - intent: affirm
+  - action: utter_upgrade_check
+  - intent: mood_busy
+  - action: utter_call_again_check
+  - intent: deny
+  - action: utter_sad_bye
+
+- story: sad path 1
+  steps:
+  - intent: affirm
+  - action: utter_upgrade_check
+  - intent: deny
+  - action: utter_goodbye
+
+- story: sad path 2
+  steps:
+  - intent: need_info
+  - action: utter_info
+  - intent: deny
+  - action: utter_goodbye
+
+- story: sad path 3
+  steps:
+  - intent: more_info
+  - action: utter_more_info
+  - intent: deny
+  - action: utter_goodbye
+
+- story: sad path 4
+  steps:
+  - intent: need_info
+  - action: utter_more_info
+  - action: utter_offers_info
+  - action: utter_payable_info
+  - intent: deny
+  - action: utter_goodbye
+
+- story: busy path
+  steps:
+  - intent: need_info
+  - action: utter_info
+  - intent: mood_busy
+  - action: utter_goodbye
+
+- story: more_info path
+  steps:
+  - intent: more_info
+  - action: utter_more_info
+  - intent: more_info
+  - action: utter_offers_info
+  - action: utter_payable_info
+  - intent: affirm
+  - action: utter_goodbye
+
+- story: don't call again path
+  steps:
+  - intent: don't_call_again
+  - action: utter_goodbye
+
+- story: language challange path 1
+  steps:
+  - intent: language_challenge
+  - action: utter_language_challenge_check
+  - intent: deny
+  - action: utter_goodbye
+
+- story: language challenge 2
+  steps:
+  - intent: language_challenge
+  - action: utter_language_challenge_check
+  - intent: affirm
+  - action: utter_goodbye
+
+- story: waiting path
+  steps:
+  - intent: affirm
+  - action: utter_upgrade_check
+  - intent: waiting_list
+  - action: utter_goodbye
+  - action: action_restart
+
+- story: bot challenge path
+  steps:
+  - intent: bot_challenge
+  - action: utter_greet
+  - intent: more_info
+  - action: utter_more_info
+  - intent: deny
+  - action: utter_goodbye
+  - action: action_restart
+
+- story: not interested conform path
+  steps:
+  - intent: not_interested_conform
+  - action: utter_goodbye
+  - action: action_restart
+
+- story: e-brochure check path
+  steps:
+  - intent: more_info
+  - action: utter_more_info
+  - action: utter_offers_info
+  - action: utter_payable_info
+  - intent: regarding_e-brochure
+  - action: utter_e-brochure_check
+  - action: action_restart
+- story: not eligible path
+  steps:
+  - intent: not_eligible
+  - action: utter_goodbye
+  - action: action_restart
